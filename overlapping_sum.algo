@@ -1,59 +1,72 @@
 Algo:sum_overlaping_elements
 //method_1
 var
-    tab_1:Array_of_INTEGER
-    tab_2:Array_of_INTEGER
-    i:INTEGER
-    j:INTEGER
+    tab_1, tab_2: Array_of_INTEGER[50]
+    i,j: INTEGER:=0
+    found: Boolean
     sum=0
 begin
-    tab_1:=[3,1,7,9]
-    tab_2:=[2,4,1,9,3]
-    for (i from 0 to tab_1.length and j from 0 to tab_2.length)
-            if (tab_1[i]=tab_2[j]) then
-                sum=sum+tab_1[i]*2
-            end if
+
+    for i from 0 to tab_1.length step 1 do 
+    found=false
+            for j from 0 to tab_2.length step 1 do 
+               if (tab_1[i]=tab_2[j]) then
+               found=true
+               end if
+            end for
+        if (found=true) then
+        sum=sum+tab_1[i]
+        end if
+
+    end for
+    Write (sum)
+     
+     for j from 0 to tab_2.length step 1 do 
+    found=false
+            for i from 0 to tab_1.length step 1 do 
+               if (tab_2[j]=tab_1[i]) then
+               found=true
+               end if
+            end for
+        if (found=true) then
+        sum=sum+tab_1[j]
+        end if
+
     end for
     Write (sum)
 end
 //method_2
-var htab :HASH_TABLE<INTEGER>;
-    tab_1:Array_of_INTEGER
-    tab_2:Array_of_INTEGER
-    sum=0
-    i,j,count : INTEGER;
+
+
+var
+      tab_1, tab_2 : Array_of_integer [50]
+      tab_3: Array_of_integer [100]
+      i,j, count: INTEGER
+      sum:=0
+    htab:= HASH_TABLE<Integer,integer>
 begin
-Read(tab_1);
-Read(tab_2);
-// first we browse the two tables
-for ( i = 0; i <tab_1.length ; i++) {
-            element = tab_1[i];
-            if(htab.lookup(element)=TRUE) then {
-                count := htab.get(element);
-                htab.insert(element,count+1);
-            }
-            else
-                htab.insert(element, 1);
-        }
+for i from 0 to tab_1.length-1 sep 1 do
+    if (htab.lookup(tab_1[i]=tab_2[j])=true) then 
+    count:= htab.get(tab1[i])
+    htab.insert(tab_1[i], count +1)
+    else
+    htab.insert(tab_1[i]),1)
+    end if
+end for
 
-        for (int i = 0; i <setB.length ; i++) {
-            element = tab_2[i];
-            if(htab.lookup(element)=TRUE) then {
-                count := htab.get(element);
-                htab.insert(element,count+1);
-            }
-            else
-                htab.insert(element, 1);
-        }
-
-        // Now we loop the hash table to extract the overlapping character
-       
-        for (i from 0 to htab.length-1){
-            count = htab.get(key);
-            if(count==2) then
-                sum = sum+ key*2;}
-            end if
-        end for
-    Write(sum)
+for j from 0 to tab_2.length-1 sep 1 do
+    if (htab.lookup(tab_2[j]=tab_1[i])=true) then
+    count:= htab.get(tab2[i])
+    htab.insert(tab_2[j], count +1)
+    else
+    htab.insert(tab_2[j]),1)
+    end if
+end for
+tab_3:=htab.getkeys()
+for i from 0 to tab_3.length-1 step 1 do
+   if (htab.get(tab_3[i])=1) then
+     sum=sum+tab3[i]
+   end if
+end for
 end
  
