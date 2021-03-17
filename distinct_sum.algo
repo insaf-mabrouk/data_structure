@@ -1,0 +1,47 @@
+Algo:sum_distinct_elements
+//method_1
+var
+    tab_1:Array_of_INTEGER
+    tab_2:Array_of_INTEGER
+    i:INTEGER
+    j:INTEGER
+    sum=0
+begin
+    tab_1:=[3,1,7,9]
+    tab_2:=[2,4,1,9,3]
+    for (i from 0 to tab_1.length and j from 0 to tab_2.length){
+            if (tab_1[i]<>tab_2[j]) or (tab_2[j]<>tab_1[i]) then
+                sum=sum+tab_1[i]+tab_2[j]}
+            end if
+    end for
+    Write (sum)
+end
+//method_2
+
+var
+    htab :HASH_TABLE<INTEGER>;
+    tab_1:Array_of_INTEGER
+    tab_2:Array_of_INTEGER
+    sum=0
+    i,j,count : INTEGER;
+
+begin
+
+// first we browse the two tables
+   for (i from 0 to tab_1.length and j from 0 to tab_2.length)
+       if (htab.lookup(tab_1[i]) = TRUE) and (htab.lookup(tab_2[i]) = TRUE)then
+           count := htab.get(tab_1[i]) and count := htab.get(tab_1[i]);
+
+   end for
+// Now we loop the hash table to extract the different character
+    for (i from 0 to htab.length-1, i++){
+            count = htab.get(key);
+       if(count==1)
+       then
+                sum = sum+ key;}
+       end if
+   end for
+
+   Write(sum);
+end 
+ 

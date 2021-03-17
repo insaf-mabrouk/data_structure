@@ -1,0 +1,59 @@
+Algo:sum_overlaping_elements
+//method_1
+var
+    tab_1:Array_of_INTEGER
+    tab_2:Array_of_INTEGER
+    i:INTEGER
+    j:INTEGER
+    sum=0
+begin
+    tab_1:=[3,1,7,9]
+    tab_2:=[2,4,1,9,3]
+    for (i from 0 to tab_1.length and j from 0 to tab_2.length)
+            if (tab_1[i]=tab_2[j]) then
+                sum=sum+tab_1[i]*2
+            end if
+    end for
+    Write (sum)
+end
+//method_2
+var htab :HASH_TABLE<INTEGER>;
+    tab_1:Array_of_INTEGER
+    tab_2:Array_of_INTEGER
+    sum=0
+    i,j,count : INTEGER;
+begin
+Read(tab_1);
+Read(tab_2);
+// first we browse the two tables
+for ( i = 0; i <tab_1.length ; i++) {
+            element = tab_1[i];
+            if(htab.lookup(element)=TRUE) then {
+                count := htab.get(element);
+                htab.insert(element,count+1);
+            }
+            else
+                htab.insert(element, 1);
+        }
+
+        for (int i = 0; i <setB.length ; i++) {
+            element = tab_2[i];
+            if(htab.lookup(element)=TRUE) then {
+                count := htab.get(element);
+                htab.insert(element,count+1);
+            }
+            else
+                htab.insert(element, 1);
+        }
+
+        // Now we loop the hash table to extract the overlapping character
+       
+        for (i from 0 to htab.length-1){
+            count = htab.get(key);
+            if(count==2) then
+                sum = sum+ key*2;}
+            end if
+        end for
+    Write(sum)
+end
+ 
